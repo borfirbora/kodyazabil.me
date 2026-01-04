@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Tüm Eğitimler{% endblock %}
+
+{% block content %}
+    <div class="py-10">
+        <h1 class="text-4xl font-bold text-white mb-8 border-l-4 border-blue-500 pl-4">
+            Eğitim Arşivi
+        </h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for egitim in egitimler %}
+                <article class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 flex flex-col h-full">
+                    {% if egitim.resim %}
+                        <img src="{{ egitim.resim.url }}" alt="{{ egitim.baslik }}" class="w-full h-48 object-cover">
+                    {% else %}
+                        <div class="w-full h-48 bg-gray-700 flex items-center justify-center text-gray-500">Kodyazabil</div>
+                    {% endif %}
+
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="text-xs font-bold uppercase tracking-wide text-blue-400 mb-2">
+                            {{ egitim.kategori.isim }}
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">
+                            <a href="{% url 'egitimler:detay' slug=egitim.slug %}" class="hover:text-blue-400 transition">
+                                {{ egitim.baslik }}
+                            </a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
+                            {{ egitim.aciklama }}
+                        </p>
+                        <a href="{% url 'egitimler:detay' slug=egitim.slug %}" class="mt-auto inline-block text-center w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">
+                            İncele
+                        </a>
+                    </div>
+                </article>
+            {% empty %}
+                <p class="text-gray-500">Henüz eğitim eklenmemiş.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

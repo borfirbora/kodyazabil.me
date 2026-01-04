@@ -1,0 +1,60 @@
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} | Kodyazabil.me</title>
+    {% tailwind_css %}
+</head>
+
+<body class="bg-gray-900 text-gray-200 font-sans flex flex-col min-h-screen">
+
+    <a href="#ana-icerik" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-yellow-500 focus:text-black focus:p-4 focus:z-50 focus:rounded-lg font-bold">
+        Menüyü Atla ve İçeriğe Git
+    </a>
+
+    <header class="bg-gray-800 shadow-lg border-b border-gray-700">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            
+            <a href="/" class="text-2xl font-bold text-blue-400 hover:text-blue-300 transition">
+                Kodyazabil.me
+            </a>
+
+            <nav aria-label="Ana Menü">
+                <ul class="flex space-x-6">
+                    <li><a href="/" class="hover:text-blue-400 text-gray-300 transition">Ana Sayfa</a></li>
+                    <li><a href="{% url 'egitimler:liste' %}" class="hover:text-blue-400 text-gray-300 transition">Eğitimler</a></li>
+                    <li><a href="{% url 'calismalar:liste' %}" class="hover:text-blue-400 text-gray-300 transition">Çalışmalarım</a></li>
+                    <li><a href="{% url 'iletisim:sayfa' %}" class="hover:text-blue-400 text-gray-300 transition">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="ana-icerik" class="container mx-auto px-4 py-8 flex-grow">
+        
+        {% if messages %}
+            <div class="mb-6">
+                {% for message in messages %}
+                    <div class="p-4 rounded-lg bg-gray-800 text-blue-300 border-l-4 border-blue-500">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <footer class="bg-black text-gray-500 py-6 mt-auto border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2026 Kodyazabil.me - Özgür Yazılım & Erişilebilir Eğitim</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Python Çöpleri
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Sanal Ortam (Kritik!)
+venv/
+env/
+
+# Veritabanı (Bunu göndermeyiz, sunucuda yenisi oluşur)
+db.sqlite3
+
+# Tailwind ve Node.js Çöpleri (Kritik!)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Toplanan Statik Dosyalar
+staticfiles/
+
+# Medya Dosyaları (Kullanıcı yüklemeleri git'e atılmaz)
+media/
