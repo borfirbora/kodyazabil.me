@@ -23,9 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7v%)wk@ej87x7d&5*3l$f(8)z$8(x)(m5+v!mi9wu@$lmj6efk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'kodyazabil.me',
+]
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -137,3 +139,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Tarayıcıdan erişilecek adres (http://site.com/media/resim.jpg)
 MEDIA_URL = '/media/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
