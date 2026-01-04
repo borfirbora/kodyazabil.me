@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Hakkımda{% endblock %}
+
+{% block content %}
+    <div class="py-12">
+        
+        <div class="flex flex-col md:flex-row items-center gap-12 mb-20">
+            <div class="w-48 h-48 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl shrink-0 border-4 border-gray-800">
+                <span class="text-6xl font-bold text-white">B</span>
+            </div>
+
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl font-bold text-white mb-6">
+                    Merhaba, Ben <span class="text-blue-500">Bora</span> 👋
+                </h1>
+                <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                    Ben teknolojiyi sadece tüketen değil, aynı zamanda üreten ve şekillendiren bir Yazılım Geliştiricisiyim. 
+                    Görme engelli bir birey olarak, **erişilebilirliğin** bir lüks değil, bir zorunluluk olduğunu savunuyorum.
+                </p>
+                <p class="text-gray-400 leading-relaxed">
+                    Python ve Django dünyasında geliştirdiğim projelerle, karmaşık sorunlara basit ve etkili çözümler üretiyorum. 
+                    Kod yazarken sadece bilgisayarlarla değil, o kodu kullanacak insanlarla da empati kuruyorum.
+                </p>
+            </div>
+        </div>
+
+        <div class="mb-20">
+            <h2 class="text-3xl font-bold text-white mb-10 border-l-4 border-yellow-500 pl-4">
+                Teknoloji Çantam
+            </h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-blue-500 transition hover:-translate-y-1 text-center group">
+                    <h3 class="text-xl font-bold text-white group-hover:text-blue-400">Python</h3>
+                    <p class="text-sm text-gray-500 mt-2">İleri Seviye</p>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-500 transition hover:-translate-y-1 text-center group">
+                    <h3 class="text-xl font-bold text-white group-hover:text-green-400">Django</h3>
+                    <p class="text-sm text-gray-500 mt-2">Backend & Web</p>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-cyan-500 transition hover:-translate-y-1 text-center group">
+                    <h3 class="text-xl font-bold text-white group-hover:text-cyan-400">Tailwind CSS</h3>
+                    <p class="text-sm text-gray-500 mt-2">Modern Tasarım</p>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-orange-500 transition hover:-translate-y-1 text-center group">
+                    <h3 class="text-xl font-bold text-white group-hover:text-orange-400">NVDA / JAWS</h3>
+                    <p class="text-sm text-gray-500 mt-2">Erişilebilirlik Testi</p>
+                </div>
+                
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-purple-500 transition hover:-translate-y-1 text-center group">
+                    <h3 class="text-xl font-bold text-white group-hover:text-purple-400">Git & GitHub</h3>
+                    <p class="text-sm text-gray-500 mt-2">Versiyon Kontrol</p>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-red-500 transition hover:-translate-y-1 text-center group">
+                    <h3 class="text-xl font-bold text-white group-hover:text-red-400">Linux</h3>
+                    <p class="text-sm text-gray-500 mt-2">Sunucu Yönetimi</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-800 rounded-2xl p-8 md:p-12 text-center border border-gray-700">
+            <h2 class="text-3xl font-bold text-white mb-6">Misyonum</h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                "Herkes için erişilebilir bir web."
+            </p>
+            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                Hedefim, sadece kod yazmak değil; yazdığım her satırda engelleri kaldıran, teknolojiyi herkes için kullanılabilir kılan dijital deneyimler inşa etmektir.
+            </p>
+        </div>
+
+    </div>
+{% endblock %}

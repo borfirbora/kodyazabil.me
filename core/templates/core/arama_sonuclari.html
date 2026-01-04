@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Arama Sonuçları: {{ query }}{% endblock %}
+
+{% block content %}
+    <div class="py-10">
+        <h1 class="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-4">
+            "<span class="text-yellow-500">{{ query }}</span>" için Arama Sonuçları
+        </h1>
+
+        {% if not egitim_sonuclari and not proje_sonuclari %}
+            <div class="bg-gray-800 p-8 rounded-lg text-center">
+                <p class="text-gray-400 text-lg mb-4">Maalesef aradığınız kriterlere uygun bir içerik bulamadık.</p>
+                <a href="/" class="text-blue-400 hover:text-blue-300 font-bold">&larr; Ana Sayfaya Dön</a>
+            </div>
+        {% endif %}
+
+
+        {% if egitim_sonuclari %}
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold text-blue-400 mb-6 flex items-center">
+                    <span class="bg-blue-900/50 p-2 rounded mr-3">📚</span> Eğitimler ({{ egitim_sonuclari.count }})
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {% for egitim in egitim_sonuclari %}
+                        <a href="{% url 'egitimler:detay' slug=egitim.slug %}" class="block bg-gray-800 hover:bg-gray-700 p-4 rounded-lg transition border border-gray-700 hover:border-blue-500">
+                            <h3 class="font-bold text-white mb-1">{{ egitim.baslik }}</h3>
+                            <p class="text-sm text-gray-400 line-clamp-2">{{ egitim.aciklama }}</p>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+
+        {% if proje_sonuclari %}
+            <div>
+                <h2 class="text-2xl font-bold text-green-400 mb-6 flex items-center">
+                    <span class="bg-green-900/50 p-2 rounded mr-3">💻</span> Projeler ({{ proje_sonuclari.count }})
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {% for proje in proje_sonuclari %}
+                        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 flex flex-col md:flex-row gap-4">
+                            {% if proje.resim %}
+                                <img src="{{ proje.resim.url }}" class="w-20 h-20 object-cover rounded hidden md:block">
+                            {% endif %}
+                            <div>
+                                <h3 class="font-bold text-white mb-1">{{ proje.baslik }}</h3>
+                                <p class="text-xs text-green-400 font-mono mb-2">[ {{ proje.teknolojiler }} ]</p>
+                                <p class="text-sm text-gray-400 line-clamp-2">{{ proje.aciklama }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
