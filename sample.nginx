@@ -1,0 +1,37 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name kodyazabil.me www.kodyazabil.me;
+    return 301 https://kodyazabil.me$request_uri;  # HTTP'den HTTPS'ye yönlendirme
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name kodyazabil.me www.kodyazabil.me;
+
+    # SSL Ayarları (Aynen korundu)
+    ssl_certificate /etc/letsencrypt/live/kodyazabil.me/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/kodyazabil.me/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    # Favicon logları kirletmesin
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    # Statik Dosyalar (CSS, Resimler) - Nginx sunacak
+    location /static/ {
+        alias /root/kodyazabil.me/staticfiles/;
+    }
+
+    # Medya Dosyaları (Yüklenen Resimler) - Nginx sunacak
+    location /media/ {
+        alias /root/kodyazabil.me/media/;
+    }
+
+    # Ana Uygulama - Gunicorn Soketine Yönlendirme
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/tmp/kodyazabil.sock;
+    }
+}
