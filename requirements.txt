@@ -7,7 +7,7 @@ charset-normalizer==3.4.4
 click==8.3.1
 colorama==0.4.6
 cookiecutter==2.6.0
-Django==6.0
+Django==5.1.4
 django-browser-reload==1.21.0
 django-ckeditor==6.7.3
 django-js-asset==3.1.2
