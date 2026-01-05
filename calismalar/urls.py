@@ -5,4 +5,5 @@ app_name = 'calismalar'
 
 urlpatterns = [
     path('', views.tum_projeler, name='liste'),
+    path('<slug:slug>/', views.calismalar_detay, name='detay'),
 ]

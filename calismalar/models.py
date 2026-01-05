@@ -8,7 +8,7 @@ class Proje(models.Model):
     # Yeni Alanlar: Linkler (Boş bırakılabilir, çünkü her projenin linki olmayabilir)
     github_link = models.URLField(blank=True, verbose_name="GitHub Linki")
     demo_link = models.URLField(blank=True, verbose_name="Canlı Önizleme Linki")
-    
+    slug = models.SlugField(unique=True, blank=True)
     teknolojiler = models.CharField(max_length=200, verbose_name="Kullanılan Teknolojiler", help_text="Örn: Python, Django, Tailwind")
     
     olusturulma_tarihi = models.DateTimeField(auto_now_add=True)

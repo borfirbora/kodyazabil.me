@@ -1,41 +1,70 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Tüm Çalışmalarım{% endblock %}
+{% block title %}Tüm Çalışmalarım - Kodyazabil.me{% endblock %}
 
 {% block content %}
-    <div class="py-10">
-        <h1 class="text-4xl font-bold text-white mb-8 border-l-4 border-green-500 pl-4">
+    <div class="py-12 px-4">
+        <h1 class="text-4xl font-extrabold text-white mb-10 border-l-4 border-green-500 pl-6">
             Proje Portfolyosu
         </h1>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             {% for proje in projeler %}
-                <article class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 flex flex-col md:flex-row hover:border-gray-600 transition duration-300">
-                    <div class="md:w-2/5 h-48 md:h-auto relative">
+                <article class="bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-700 flex flex-col md:flex-row hover:border-green-500/50 transition duration-300 group">
+                    
+                    <a href="{% url 'calismalar:detay' slug=proje.slug %}" class="md:w-2/5 h-56 md:h-auto relative block overflow-hidden bg-gray-700">
                         {% if proje.resim %}
-                            <img src="{{ proje.resim.url }}" alt="{{ proje.baslik }}" class="w-full h-full object-cover">
+                            <img src="{{ proje.resim.url }}" alt="{{ proje.baslik }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         {% else %}
-                            <div class="w-full h-full bg-gray-700 flex items-center justify-center text-gray-500">Görsel Yok</div>
+                            <div class="w-full h-full flex items-center justify-center text-gray-500">
+                                <span class="sr-only">Görsel Yok</span>
+                                Görsel Yok
+                            </div>
                         {% endif %}
-                    </div>
+                    </a>
+
                     <div class="p-6 md:w-3/5 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-xl font-bold text-white mb-2">{{ proje.baslik }}</h3>
-                            <div class="text-xs text-green-400 font-mono mb-3">[ {{ proje.teknolojiler }} ]</div>
-                            <p class="text-gray-400 text-sm line-clamp-3 mb-4">{{ proje.aciklama }}</p>
+                            <h3 class="text-2xl font-bold text-white mb-2">
+                                <a href="{% url 'calismalar:detay' slug=proje.slug %}" class="hover:text-green-400 transition">
+                                    {{ proje.baslik }}
+                                </a>
+                            </h3>
+                            
+                            <div class="text-xs text-green-400 font-mono mb-4 bg-gray-900/50 inline-block px-2 py-1 rounded border border-gray-700">
+                                {{ proje.teknolojiler }}
+                            </div>
+
+                            <p class="text-gray-400 text-sm line-clamp-3 mb-6">
+                                {{ proje.aciklama|striptags|safe|truncatechars:120 }}
+                            </p>
                         </div>
-                        <div class="flex space-x-4 mt-auto">
-                            {% if proje.github_link %}
-                                <a href="{{ proje.github_link }}" target="_blank" class="text-sm font-bold text-gray-300 hover:text-white border-b border-gray-500 hover:border-white transition">GitHub</a>
-                            {% endif %}
-                            {% if proje.demo_link %}
-                                <a href="{{ proje.demo_link }}" target="_blank" class="text-sm font-bold text-green-400 hover:text-green-300 border-b border-green-500 hover:border-green-300 transition">Canlı Site</a>
-                            {% endif %}
+
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-700">
+                            <a href="{% url 'calismalar:detay' slug=proje.slug %}" class="text-sm font-semibold text-white bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded transition">
+                                İncele
+                            </a>
+
+                            <div class="flex space-x-4">
+                                {% if proje.github_link %}
+                                    <a href="{{ proje.github_link }}" target="_blank" class="text-gray-400 hover:text-white text-sm font-medium transition flex items-center gap-1">
+                                        GitHub
+                                    </a>
+                                {% endif %}
+
+                                {% if proje.demo_link %}
+                                    <a href="{{ proje.demo_link }}" target="_blank" class="text-green-500 hover:text-green-400 text-sm font-medium transition flex items-center gap-1">
+                                        Canlı Site
+                                    </a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </article>
             {% empty %}
-                <p class="text-gray-500">Henüz proje yok.</p>
+                <div class="col-span-2 text-center py-12">
+                    <p class="text-gray-500 text-lg">Henüz portfolyoya eklenmiş bir proje bulunmuyor.</p>
+                </div>
             {% endfor %}
         </div>
     </div>
