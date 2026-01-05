@@ -23,11 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7v%)wk@ej87x7d&5*3l$f(8)z$8(x)(m5+v!mi9wu@$lmj6efk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
-ALLOWED_HOSTS = [
-    'kodyazabil.me',
-]
+import os
+
+DEBUG = os.getenv('KODYAZABIL_PROD') != 'True'
+
+if DEBUG:
+    # LOKAL (Geliştirme) Modu
+    ALLOWED_HOSTS = ['*']  # Her yerden erişime izin ver (Hata almazsın)
+else:
+    # CANLI (Sunucu) Modu
+    ALLOWED_HOSTS = ['kodyazabil.me', 'www.kodyazabil.me', 'localhost', '127.0.0.1']
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -42,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'core',
     'egitimler',
     'calismalar',
@@ -141,3 +148,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# CKEDITOR AYARLARI
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'basicEntities': False,
+        'entities': False,
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
+            ['Link', 'Unlink'],
+            ['Format', 'CodeSnippet'], # Format: Başlıklar için, CodeSnippet: Kod blokları için
+            ['RemoveFormat', 'Source']
+        ],
+        'width': 'auto',
+    },
+}

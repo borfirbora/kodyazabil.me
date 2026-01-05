@@ -1,8 +1,8 @@
 from django.db import models
-
+from ckeditor.fields import RichTextField # <-- Import et
 class Proje(models.Model):
     baslik = models.CharField(max_length=200, verbose_name="Proje Adı")
-    aciklama = models.TextField(verbose_name="Proje Açıklaması")
+    aciklama = RichTextField(verbose_name="Proje Açıklaması")
     resim = models.ImageField(upload_to="proje_resimleri/", verbose_name="Proje Görseli")
     
     # Yeni Alanlar: Linkler (Boş bırakılabilir, çünkü her projenin linki olmayabilir)

@@ -3,33 +3,33 @@
 {% block title %}{{ egitim.baslik }}{% endblock %}
 
 {% block content %}
-    <div class="mb-10">
-        <div class="text-blue-400 font-bold uppercase tracking-wide mb-2">
-            {{ egitim.kategori.isim }}
-        </div>
-
-        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
-            {{ egitim.baslik }}
-        </h1>
-
-        <div class="text-gray-500 text-sm mb-8 border-b border-gray-800 pb-8">
-            Yayınlanma Tarihi: {{ egitim.olusturulma_tarihi|date:"d F Y" }}
-        </div>
-
-        {% if egitim.resim %}
-            <div class="rounded-xl overflow-hidden shadow-2xl mb-10 border border-gray-700">
-                <img src="{{ egitim.resim.url }}" alt="{{ egitim.baslik }}" class="w-full object-cover max-h-[500px]">
-            </div>
-        {% endif %}
+<div class="mb-10">
+    <div class="text-blue-400 font-bold uppercase tracking-wide mb-2">
+        {{ egitim.kategori.isim }}
     </div>
 
-    <article class="prose prose-lg prose-invert max-w-none text-gray-300">
-        {{ egitim.aciklama|linebreaks }}
-    </article>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
+        {{ egitim.baslik }}
+    </h1>
 
-    <div class="mt-12 pt-8 border-t border-gray-800">
-        <a href="{% url 'anasayfa' %}" class="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold transition">
-            &larr; Ana Sayfaya Dön
-        </a>
+    <div class="text-gray-500 text-sm mb-8 border-b border-gray-800 pb-8">
+        Yayınlanma Tarihi: {{ egitim.olusturulma_tarihi|date:"d F Y" }}
     </div>
+
+    {% if egitim.resim %}
+    <div class="rounded-xl overflow-hidden shadow-2xl mb-10 border border-gray-700">
+        <img src="{{ egitim.resim.url }}" alt="{{ egitim.baslik }}" class="w-full object-cover max-h-[500px]">
+    </div>
+    {% endif %}
+</div>
+
+<div class="text-gray-300 leading-relaxed mb-6 space-y-4">
+    {{ egitim.aciklama|safe }}
+</div>
+<div class="mt-12 pt-8 border-t border-gray-800">
+    <a href="{% url 'anasayfa' %}"
+        class="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold transition">
+        &larr; Ana Sayfaya Dön
+    </a>
+</div>
 {% endblock %}

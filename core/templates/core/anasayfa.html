@@ -50,9 +50,9 @@
                             </a>
                         </h3>
 
-                        <p class="text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
-                            {{ egitim.aciklama }}
-                        </p>
+                        <div class="text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
+                            {{ egitim.aciklama|striptags|safe|truncatechars:150 }}
+                        </div>
 
                         <a href="{% url 'egitimler:detay' slug=egitim.slug %}" class="mt-auto inline-block text-center w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">
                             İncele
@@ -106,7 +106,7 @@
                             </div>
 
                             <p class="text-gray-400 text-sm line-clamp-2 mb-4">
-                                {{ proje.aciklama }}
+                                {{ proje.aciklama|striptags|safe|truncatechars:120 }}
                             </p>
                         </div>
 
