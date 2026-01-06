@@ -39,6 +39,7 @@
             <nav aria-label="Ana Menü">
                 <ul class="flex space-x-6">
                     <li><a href="/" class="hover:text-blue-400 text-gray-300 transition">Ana Sayfa</a></li>
+                    <li><a href="{% url 'blog:liste' %}" class="hover:text-blue-400 text-gray-300 transition">Blog</a></li>
                     <li><a href="{% url 'egitimler:liste' %}" class="hover:text-blue-400 text-gray-300 transition">Eğitimler</a></li>
                     <li><a href="{% url 'calismalar:liste' %}" class="hover:text-blue-400 text-gray-300 transition">Çalışmalarım</a></li>
                     <li><a href="{% url 'iletisim:sayfa' %}" class="hover:text-blue-400 text-gray-300 transition">İletişim</a></li>

@@ -10,6 +10,7 @@ urlpatterns = [
     path('', include('egitimler.urls')),
     path('calismalar/', include('calismalar.urls')),
     path('iletisim/', include('iletisim.urls')),
+    path('blog/', include('blog.urls')),
 ]
 
 # SADECE DEBUG MODUNDA: Medya dosyalarını sun

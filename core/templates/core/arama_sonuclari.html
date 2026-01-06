@@ -3,55 +3,75 @@
 {% block title %}Arama Sonuçları: {{ query }}{% endblock %}
 
 {% block content %}
-    <div class="py-10">
-        <h1 class="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-4">
+    <div class="py-12 px-4 max-w-6xl mx-auto">
+        
+        <h1 class="text-3xl font-bold text-white mb-10 border-b border-gray-700 pb-4">
             "<span class="text-yellow-500">{{ query }}</span>" için Arama Sonuçları
         </h1>
 
         {% if not egitim_sonuclari and not proje_sonuclari %}
-            <div class="bg-gray-800 p-8 rounded-lg text-center">
-                <p class="text-gray-400 text-lg mb-4">Maalesef aradığınız kriterlere uygun bir içerik bulamadık.</p>
-                <a href="/" class="text-blue-400 hover:text-blue-300 font-bold">&larr; Ana Sayfaya Dön</a>
+            <div class="bg-gray-800 p-10 rounded-xl text-center border border-gray-700">
+                <div class="text-6xl mb-4">🔍</div>
+                <p class="text-gray-300 text-xl mb-6 font-medium">Maalesef aradığınız kriterlere uygun bir içerik bulamadık.</p>
+                <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                    &larr; Ana Sayfaya Dön
+                </a>
             </div>
         {% endif %}
 
-
         {% if egitim_sonuclari %}
-            <div class="mb-12">
-                <h2 class="text-2xl font-bold text-blue-400 mb-6 flex items-center">
-                    <span class="bg-blue-900/50 p-2 rounded mr-3">📚</span> Eğitimler ({{ egitim_sonuclari.count }})
+            <div class="mb-16">
+                <h2 class="text-2xl font-bold text-blue-400 mb-6 flex items-center border-l-4 border-blue-500 pl-4">
+                    📚 Eğitimler ({{ egitim_sonuclari.count }})
                 </h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {% for egitim in egitim_sonuclari %}
-                        <a href="{% url 'egitimler:detay' slug=egitim.slug %}" class="block bg-gray-800 hover:bg-gray-700 p-4 rounded-lg transition border border-gray-700 hover:border-blue-500">
-                            <h3 class="font-bold text-white mb-1">{{ egitim.baslik }}</h3>
-                            <p class="text-sm text-gray-400 line-clamp-2">{{ egitim.aciklama }}</p>
+                        <a href="{% url 'egitimler:detay' slug=egitim.slug %}" class="block bg-gray-800 hover:bg-gray-750 p-6 rounded-xl transition duration-300 border border-gray-700 hover:border-blue-500 group">
+                            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition">{{ egitim.baslik }}</h3>
+                            <p class="text-sm text-gray-400 line-clamp-3">
+                                {{ egitim.aciklama|striptags|safe|truncatechars:100 }}
+                            </p>
                         </a>
                     {% endfor %}
                 </div>
             </div>
         {% endif %}
 
-
         {% if proje_sonuclari %}
             <div>
-                <h2 class="text-2xl font-bold text-green-400 mb-6 flex items-center">
-                    <span class="bg-green-900/50 p-2 rounded mr-3">💻</span> Projeler ({{ proje_sonuclari.count }})
+                <h2 class="text-2xl font-bold text-green-400 mb-6 flex items-center border-l-4 border-green-500 pl-4">
+                    💻 Projeler ({{ proje_sonuclari.count }})
                 </h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {% for proje in proje_sonuclari %}
-                        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 flex flex-col md:flex-row gap-4">
+                        <a href="{% url 'calismalar:detay' slug=proje.slug %}" class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex gap-5 hover:bg-gray-750 hover:border-green-500 transition duration-300 group">
+                            
                             {% if proje.resim %}
-                                <img src="{{ proje.resim.url }}" class="w-20 h-20 object-cover rounded hidden md:block">
+                                <div class="flex-shrink-0">
+                                    <img src="{{ proje.resim.url }}" alt="{{ proje.baslik }}" class="w-24 h-24 object-cover rounded-lg border border-gray-600">
+                                </div>
+                            {% else %}
+                                <div class="w-24 h-24 bg-gray-700 rounded-lg flex items-center justify-center text-gray-500 text-xs text-center border border-gray-600 flex-shrink-0">
+                                    Görsel Yok
+                                </div>
                             {% endif %}
-                            <div>
-                                <h3 class="font-bold text-white mb-1">{{ proje.baslik }}</h3>
-                                <p class="text-xs text-green-400 font-mono mb-2">[ {{ proje.teknolojiler }} ]</p>
-                                <p class="text-sm text-gray-400 line-clamp-2">{{ proje.aciklama }}</p>
+
+                            <div class="flex flex-col justify-center">
+                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-green-400 transition">
+                                    {{ proje.baslik }}
+                                </h3>
+                                
+                                <span class="text-xs text-green-400 font-mono mb-2 bg-gray-900/50 px-2 py-1 rounded self-start border border-gray-700">
+                                    {{ proje.teknolojiler }}
+                                </span>
+                                
+                                <p class="text-sm text-gray-400 line-clamp-2">
+                                    {{ proje.aciklama|striptags|safe|truncatechars:120 }}
+                                </p>
                             </div>
-                        </div>
+                        </a>
                     {% endfor %}
                 </div>
             </div>

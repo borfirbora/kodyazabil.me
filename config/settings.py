@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'iletisim',
+    'blog',
 ]
 
 MIDDLEWARE = [
