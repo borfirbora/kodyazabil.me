@@ -154,15 +154,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
-        'basicEntities': False,
-        'entities': False,
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'],
-            ['Format', 'CodeSnippet'], # Format: Başlıklar için, CodeSnippet: Kod blokları için
-            ['RemoveFormat', 'Source']
+            ['RemoveFormat', 'Source'],
+            ['Format', 'Font', 'FontSize'],
+            ['CodeSnippet'], # <-- BU BUTONU EKLEDİK
         ],
         'width': 'auto',
-    },
+        'extraPlugins': 'codesnippet', # <-- BU EKLENTİYİ AKTİF ETTİK
+    }
 }

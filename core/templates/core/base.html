@@ -2,64 +2,73 @@
 
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} | Kodyazabil.me</title>
     {% tailwind_css %}
     <link rel="alternate" type="application/rss+xml" title="Kodyazabil.me Blog RSS" href="{% url 'blog:rss' %}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
 </head>
 
 <body class="bg-gray-900 text-gray-200 font-sans flex flex-col min-h-screen">
 
-    <a href="#ana-icerik" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-yellow-500 focus:text-black focus:p-4 focus:z-50 focus:rounded-lg font-bold">
+    <a href="#ana-icerik"
+        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-yellow-500 focus:text-black focus:p-4 focus:z-50 focus:rounded-lg font-bold">
         Menüyü Atla ve İçeriğe Git
     </a>
 
     <header class="bg-gray-800 shadow-lg border-b border-gray-700">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            
+
             <a href="/" class="text-2xl font-bold text-blue-400 hover:text-blue-300 transition">
                 Kodyazabil.me
             </a>
 
-<form action="{% url 'arama' %}" method="get" class="hidden md:flex items-center mr-6">
-    <div class="relative">
-        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-        </span>
-        
-        <input type="text" name="q" placeholder="Eğitim veya Proje ara..." 
-               class="bg-gray-700 text-white border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-blue-500 w-64 text-sm transition placeholder-gray-400"
-               aria-label="Site içi arama">
-    </div>
-</form>
+            <form action="{% url 'arama' %}" method="get" class="hidden md:flex items-center mr-6">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </span>
+
+                    <input type="text" name="q" placeholder="Eğitim veya Proje ara..."
+                        class="bg-gray-700 text-white border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-blue-500 w-64 text-sm transition placeholder-gray-400"
+                        aria-label="Site içi arama">
+                </div>
+            </form>
 
             <nav aria-label="Ana Menü">
                 <ul class="flex space-x-6">
                     <li><a href="/" class="hover:text-blue-400 text-gray-300 transition">Ana Sayfa</a></li>
-                    <li><a href="{% url 'blog:liste' %}" class="hover:text-blue-400 text-gray-300 transition">Blog</a></li>
-                    <li><a href="{% url 'egitimler:liste' %}" class="hover:text-blue-400 text-gray-300 transition">Eğitimler</a></li>
-                    <li><a href="{% url 'calismalar:liste' %}" class="hover:text-blue-400 text-gray-300 transition">Çalışmalarım</a></li>
-                    <li><a href="{% url 'iletisim:sayfa' %}" class="hover:text-blue-400 text-gray-300 transition">İletişim</a></li>
-                    <li><a href="{% url 'hakkimda' %}" class="hover:text-blue-400 text-gray-300 transition">Hakkımda</a></li>
+                    <li><a href="{% url 'blog:liste' %}" class="hover:text-blue-400 text-gray-300 transition">Blog</a>
+                    </li>
+                    <li><a href="{% url 'egitimler:liste' %}"
+                            class="hover:text-blue-400 text-gray-300 transition">Eğitimler</a></li>
+                    <li><a href="{% url 'calismalar:liste' %}"
+                            class="hover:text-blue-400 text-gray-300 transition">Çalışmalarım</a></li>
+                    <li><a href="{% url 'iletisim:sayfa' %}"
+                            class="hover:text-blue-400 text-gray-300 transition">İletişim</a></li>
+                    <li><a href="{% url 'hakkimda' %}" class="hover:text-blue-400 text-gray-300 transition">Hakkımda</a>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main id="ana-icerik" class="container mx-auto px-4 py-8 flex-grow">
-        
+
         {% if messages %}
-            <div class="mb-6">
-                {% for message in messages %}
-                    <div class="p-4 rounded-lg bg-gray-800 text-blue-300 border-l-4 border-blue-500">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+        <div class="mb-6">
+            {% for message in messages %}
+            <div class="p-4 rounded-lg bg-gray-800 text-blue-300 border-l-4 border-blue-500">
+                {{ message }}
             </div>
+            {% endfor %}
+        </div>
         {% endif %}
 
         {% block content %}
@@ -73,5 +82,58 @@
         </div>
     </footer>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tüm kod bloklarını (pre etiketlerini) bul
+            document.querySelectorAll('pre').forEach((pre) => {
+                // 1. Konumlandırma için pre etiketine 'relative' sınıfı ver
+                pre.classList.add('relative', 'group');
+
+                // 2. Kopyalama Butonunu Oluştur
+                const button = document.createElement('button');
+                button.className = "absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white p-2 rounded-md transition-all duration-200 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 opacity-0 group-hover:opacity-100 focus:opacity-100";
+
+                // Erişilebilirlik için etiket
+                button.setAttribute('aria-label', 'Kodu Kopyala');
+                button.title = "Kodu Kopyala";
+
+                // İkonlar (SVG)
+                const copyIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>`;
+
+                const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>`;
+
+                button.innerHTML = copyIcon;
+
+                // 3. Tıklama Olayı (Kopyalama İşlemi)
+                button.addEventListener('click', () => {
+                    const code = pre.querySelector('code').innerText; // Sadece kod metnini al
+
+                    navigator.clipboard.writeText(code).then(() => {
+                        // Başarılı olursa ikonu değiştir
+                        button.innerHTML = checkIcon;
+                        button.setAttribute('aria-label', 'Kopyalandı!');
+
+                        // 2 saniye sonra eski haline döndür
+                        setTimeout(() => {
+                            button.innerHTML = copyIcon;
+                            button.setAttribute('aria-label', 'Kodu Kopyala');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Kopyalama hatası:', err);
+                        alert('Kopyalama başarısız oldu :(');
+                    });
+                });
+
+                // Butonu kod bloğuna ekle
+                pre.prepend(button);
+            });
+        });
+    </script>
 </body>
+
 </html>
