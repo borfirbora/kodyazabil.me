@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} | Kodyazabil.me</title>
     {% tailwind_css %}
+    <link rel="alternate" type="application/rss+xml" title="Kodyazabil.me Blog RSS" href="{% url 'blog:rss' %}">
 </head>
 
 <body class="bg-gray-900 text-gray-200 font-sans flex flex-col min-h-screen">

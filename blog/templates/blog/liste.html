@@ -4,10 +4,16 @@
 
 {% block content %}
 <div class="max-w-6xl mx-auto py-12 px-4">
-    <h1 class="text-4xl font-extrabold text-white mb-10 border-l-4 border-yellow-500 pl-6">
-        Blog Yazıları
-    </h1>
-
+<div class="flex items-center gap-4 mb-10 border-l-4 border-yellow-500 pl-6">
+        <h1 class="text-4xl font-extrabold text-white">
+            Blog Yazıları
+        </h1>
+        <a href="{% url 'blog:rss' %}" class="text-gray-400 hover:text-yellow-500 transition" aria-label="Blog RSS Beslemesi">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+            </svg>
+        </a>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {% for yazi in yazilar %}
             <article class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 flex flex-col hover:border-yellow-500/50 transition duration-300 group">
@@ -49,7 +55,7 @@
             </div>
         {% endfor %}
     </div>
-</div>
+
 
 <div class="mt-12 flex justify-center">
         <nav class="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-lg border border-gray-700 shadow-lg">
@@ -76,5 +82,5 @@
             
         </nav>
     </div>
-
+</div>
 {% endblock %}
